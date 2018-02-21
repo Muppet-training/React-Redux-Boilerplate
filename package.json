@@ -10,6 +10,11 @@
     "babel": {
         "presets": ["env", "react", "stage-1"]
     },
+    "repository": {
+        "type": "git",
+        "url":
+            "git+https://github.com/Muppet-training/React-Redux-Boilerplate.git"
+    },
     "license": "ISC",
     "author": "Tom Curphey",
     "dependencies": {
