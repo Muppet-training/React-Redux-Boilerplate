@@ -10,4 +10,3 @@ const allReducers = combineReducers({
     users
 });
 ```
-
