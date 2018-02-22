@@ -13,6 +13,10 @@ import App from './components/App';
 const logger = createLogger();
 const store = createStore(allReducers, applyMiddleware(thunk, promise, logger));
 
+store.subscribe(function() {
+    console.log('Current State Is: ' + store.getState());
+});
+
 ReactDOM.render(
     <Provider store={store}>
         <App />

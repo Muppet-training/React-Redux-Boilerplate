@@ -3,31 +3,23 @@
  * You need to return something, so if there are no users then just return an empty array
  * */
 
-export default function () {
+export default function() {
     return [
         {
             id: 1,
-            first: "Bucky",
-            last: "Roberts",
-            age: 71,
-            description: "Bucky is a React developer and YouTuber",
-            thumbnail: "http://i.imgur.com/7yUvePI.jpg"
+            first: 'Tom',
+            last: 'Curphey',
+            age: 26,
+            description: 'Is trying to learn programming',
+            thumbnail: 'https://i.imgur.com/C15omPL.png'
         },
         {
             id: 2,
-            first: "Joby",
-            last: "Wasilenko",
-            age: 27,
-            description: "Joby loves the Packers, cheese, and turtles.",
-            thumbnail: "http://i.imgur.com/52xRlm8.png"
-        },
-        {
-            id: 3,
-            first: "Madison",
-            last: "Williams",
-            age: 24,
-            description: "Madi likes her dog but it is really annoying.",
-            thumbnail: "http://i.imgur.com/4EMtxHB.png"
+            first: 'Egg',
+            last: 'Man',
+            age: 58,
+            description: 'I workout!',
+            thumbnail: 'https://i.imgur.com/cX0rUbJ.png'
         }
-    ]
+    ];
 }
