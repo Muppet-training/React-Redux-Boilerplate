@@ -1,5 +1,7 @@
-import {combineReducers} from 'redux';
-import UserReducer from './reducer-users';
+import { combineReducers } from 'redux';
+import { booksReducers } from './reducer-books';
+import { userReducers } from './reducer-users';
+import { cartReducers } from './reducer-cart';
 import ActiveUserReducer from './reducer-active-user';
 
 /*
@@ -8,8 +10,10 @@ import ActiveUserReducer from './reducer-active-user';
  * */
 
 const allReducers = combineReducers({
-    users: UserReducer,
-    activeUser: ActiveUserReducer
+    books: booksReducers,
+    users: userReducers,
+    cart: cartReducers
+    // activeUser: ActiveUserReducer
 });
 
-export default allReducers
+export default allReducers;

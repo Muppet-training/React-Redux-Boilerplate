@@ -7,6 +7,7 @@ import {
     ControlLabel,
     Button
 } from 'react-bootstrap';
+// import { connect } from 'react-redux';
 
 class UserForm extends Component {
     render() {
@@ -47,4 +48,3 @@ class UserForm extends Component {
 }
 
 export default UserForm;
-
