@@ -1,3 +1,10 @@
+// Getg users
+export function getUsers() {
+    return {
+        type: 'GET_USER'
+    };
+}
+
 // Post user
 export function postUser(user) {
     return {
@@ -21,4 +28,3 @@ export function updateUser(user) {
         payload: user
     };
 }
-

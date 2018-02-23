@@ -24,7 +24,7 @@ export function booksReducers(
 ) {
     switch (action.type) {
         case 'GET_BOOK':
-            return { ...state, book: [...state.books] };
+            return { ...state, books: [...state.books] };
         case 'POST_BOOK':
             // let books = state.books.concat(action.payload);
             // return {books};
