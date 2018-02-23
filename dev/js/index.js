@@ -8,40 +8,44 @@ import promise from 'redux-promise';
 // import createLogger from 'redux-logger';
 import { createLogger } from 'redux-logger';
 import allReducers from './reducers';
-import App from './components/App';
+// import App from './components/App';
 
 import { addToCart } from './actions/actions-cart';
 import { postBooks, deleteBooks, updateBooks } from './actions/actions-books';
 import { postUser, deleteUser, updateUser } from './actions/actions-user';
 
+import BooksList from './containers/books-list';
+import UserList from './containers/user-list';
+
 const logger = createLogger();
 const store = createStore(allReducers, applyMiddleware(thunk, promise, logger));
 
-// store.subscribe(function() {
-//     console.log('Current State Is: ' + store.getState());
-// });
-
-// ReactDOM.render(
-//     <Provider store={store}>{/* <App /> */}</Provider>,
-//     document.getElementById('root')
-// );
-
-store.dispatch(
-    postBooks([
-        {
-            id: 1,
-            title: 'this is the book title',
-            description: 'this is the book description',
-            price: 33.33
-        },
-        {
-            id: 2,
-            title: 'this is the second book title',
-            description: 'this is the second book description',
-            price: 50
-        }
-    ])
+ReactDOM.render(
+    <Provider store={store}>
+        <div>
+            <BooksList />
+            <UserList />
+        </div>
+    </Provider>,
+    document.getElementById('root')
 );
+
+// store.dispatch(
+//     postBooks([
+//         {
+//             id: 1,
+//             title: 'this is the book title',
+//             description: 'this is the book description',
+//             price: 33.33
+//         },
+//         {
+//             id: 2,
+//             title: 'this is the second book title',
+//             description: 'this is the second book description',
+//             price: 50
+//         }
+//     ])
+// );
 
 store.dispatch(
     postUser([
@@ -63,15 +67,15 @@ store.dispatch(
         }
     ])
 );
-
-store.dispatch(deleteUser({ id: 1 }));
-
-store.dispatch(
-    updateUser({
-        id: 2,
-        first: 'Thomas'
-    })
-);
+//
+// store.dispatch(deleteUser({ id: 1 }));
+//
+// store.dispatch(
+//     updateUser({
+//         id: 2,
+//         first: 'Thomas'
+//     })
+// );
 // store.dispatch({
 //     type: 'UPDATE_USER',
 //     payload: {
@@ -80,4 +84,4 @@ store.dispatch(
 //     }
 // });
 
-store.dispatch(addToCart([{ id: 1 }]));
+// store.dispatch(addToCart([{ id: 1 }]));

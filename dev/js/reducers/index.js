@@ -12,8 +12,8 @@ import ActiveUserReducer from './reducer-active-user';
 const allReducers = combineReducers({
     books: booksReducers,
     users: userReducers,
-    cart: cartReducers
-    // activeUser: ActiveUserReducer
+    cart: cartReducers,
+    activeUser: ActiveUserReducer
 });
 
 export default allReducers;

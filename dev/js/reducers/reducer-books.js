@@ -3,8 +3,28 @@
  * You need to return something, so if there are no users then just return an empty array
  * */
 
-export function booksReducers(state = { books: [] }, action) {
+export function booksReducers(
+    state = {
+        books: [
+            {
+                id: 1,
+                title: 'this is the book title',
+                description: 'this is the book description',
+                price: 44.33
+            },
+            {
+                id: 2,
+                title: 'this is the second book title',
+                description: 'this is the second book description',
+                price: 54
+            }
+        ]
+    },
+    action
+) {
     switch (action.type) {
+        case 'GET_BOOK':
+            return { ...state, book: [...state.books] };
         case 'POST_BOOK':
             // let books = state.books.concat(action.payload);
             // return {books};
@@ -154,5 +174,7 @@ export function booksReducers(state = { books: [] }, action) {
 //             return { ...state, users: [...state.users] };
 //             break;
 //         default:
+//     }
+// }
 //     }
 // }
