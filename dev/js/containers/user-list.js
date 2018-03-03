@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getUsers } from '../actions/actions-user';
+import { getUsers, selectUser } from '../actions/actions-user';
 
 class UserList extends Component {
     componentDidMount() {
@@ -10,17 +10,24 @@ class UserList extends Component {
     }
 
     renderList() {
-        return this.props.users.map(user => {
-            return (
-                <li key={user.id}>
-                    {user.first} {user.last}
-                </li>
-            );
-        });
+        if (this.props.users) {
+            return this.props.users.map(user => {
+                return (
+                    <li
+                        key={user.id}
+                        onClick={() => this.props.selectUser(user)}
+                    >
+                        {user.first} {user.last}
+                    </li>
+                );
+            });
+        } else {
+            return <p>No this.props.users</p>;
+        }
     }
-    //onClick={() => this.props.selectUser(user)}
+    //
     render() {
-        // console.log('Users', this.props.users);
+        console.log('Users', this.props.users);
         return (
             <div>
                 <h2>User List</h2>
@@ -37,14 +44,12 @@ function mapStateToProps(state) {
         users: state.users.users
     };
 }
-//
-// function mapDispatchToProps(dispatch) {
-//     return bindActionCreators({ getUsers: getUsers }, dispatch);
-// }
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
-            getUsers: getUsers
+            getUsers: getUsers,
+            selectUser: selectUser
         },
         dispatch
     );

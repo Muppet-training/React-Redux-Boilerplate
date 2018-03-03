@@ -8,7 +8,7 @@ import promise from 'redux-promise';
 // import createLogger from 'redux-logger';
 import { createLogger } from 'redux-logger';
 import allReducers from './reducers';
-// import App from './components/App';
+import App from './components/App';
 
 import { addToCart } from './actions/actions-cart';
 import { postBooks, deleteBooks, updateBooks } from './actions/actions-books';
@@ -25,6 +25,7 @@ ReactDOM.render(
         <div>
             <BooksList />
             <UserList />
+            <App />
         </div>
     </Provider>,
     document.getElementById('root')
