@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Row, Col, Button, Grid } from 'react-bootstrap';
+
 import { getUsers, selectUser } from '../actions/actions-user';
+
+import UserForm from './user-form';
 
 class UserList extends Component {
     componentDidMount() {
@@ -10,29 +14,26 @@ class UserList extends Component {
     }
 
     renderList() {
-        if (this.props.users) {
-            return this.props.users.map(user => {
-                return (
-                    <li
-                        key={user.id}
-                        onClick={() => this.props.selectUser(user)}
-                    >
-                        {user.first} {user.last}
-                    </li>
-                );
-            });
-        } else {
-            return <p>No this.props.users</p>;
-        }
+        return this.props.users.map(user => {
+            return (
+                <li key={user.id} onClick={() => this.props.selectUser(user)}>
+                    {user.first} {user.last}
+                </li>
+            );
+        });
     }
     //
     render() {
         console.log('Users', this.props.users);
         return (
-            <div>
-                <h2>User List</h2>
-                <ul>{this.renderList()}</ul>
-            </div>
+            <Grid>
+                <Row style={{ marginTop: '15px' }}>
+                    <Col xs={12} sm={6}>
+                        <h2>User List</h2>
+                        <ul>{this.renderList()}</ul>
+                    </Col>
+                </Row>
+            </Grid>
         );
     }
 }

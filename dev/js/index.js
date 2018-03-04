@@ -14,17 +14,12 @@ import { addToCart } from './actions/actions-cart';
 import { postBooks, deleteBooks, updateBooks } from './actions/actions-books';
 import { postUser, deleteUser, updateUser } from './actions/actions-user';
 
-import BooksList from './containers/books-list';
-import UserList from './containers/user-list';
-
 const logger = createLogger();
 const store = createStore(allReducers, applyMiddleware(thunk, promise, logger));
 
 ReactDOM.render(
     <Provider store={store}>
         <div>
-            <BooksList />
-            <UserList />
             <App />
         </div>
     </Provider>,

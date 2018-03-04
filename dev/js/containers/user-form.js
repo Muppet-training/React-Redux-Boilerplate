@@ -7,23 +7,58 @@ import {
     ControlLabel,
     Button
 } from 'react-bootstrap';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { findDOMNode } from 'react-dom';
+
+import { postUser } from '../actions/actions-user';
 
 class UserForm extends Component {
+    handleSubmit() {
+        const user = [
+            {
+                first: findDOMNode(this.refs.first).value,
+                last: findDOMNode(this.refs.last).value,
+                age: findDOMNode(this.refs.age).value,
+                description: findDOMNode(this.refs.description).value
+            }
+        ];
+        this.props.postUser(user);
+    }
+
+    // handleSubmit() {
+    //     const book = [
+    //         {
+    //             title: findDOMNode(this.refs.title).value,
+    //             description: findDOMNode(this.refs.description).value,
+    //             price: findDOMNode(this.refs.price).value
+    //         }
+    //     ];
+    //     this.props.postBooks(book);
+    // }
+
     render() {
         return (
             <Well>
                 <Panel>
                     <Panel.Body>
-                        <FormGroup controlId="title">
-                            <ControlLabel>Name</ControlLabel>
+                        <FormGroup controlId="first">
+                            <ControlLabel>First Name</ControlLabel>
                             <FormControl
                                 type="text"
-                                placeholder="Enter Title"
-                                ref="title"
+                                placeholder="Enter First Name"
+                                ref="first"
                             />
                         </FormGroup>
-                        <FormGroup controlId="title">
+                        <FormGroup controlId="last">
+                            <ControlLabel>Last Name</ControlLabel>
+                            <FormControl
+                                type="text"
+                                placeholder="Enter Last Name"
+                                ref="last"
+                            />
+                        </FormGroup>
+                        <FormGroup controlId="age">
                             <ControlLabel>Age</ControlLabel>
                             <FormControl
                                 type="text"
@@ -39,7 +74,12 @@ class UserForm extends Component {
                                 ref="description"
                             />
                         </FormGroup>
-                        <Button bsStyle="primary">Save USer</Button>
+                        <Button
+                            onClick={this.handleSubmit.bind(this)}
+                            bsStyle="primary"
+                        >
+                            Save User
+                        </Button>
                     </Panel.Body>
                 </Panel>
             </Well>
@@ -47,4 +87,8 @@ class UserForm extends Component {
     }
 }
 
-export default UserForm;
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ postUser }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(UserForm);

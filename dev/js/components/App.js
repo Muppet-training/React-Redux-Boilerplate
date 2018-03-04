@@ -2,7 +2,10 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import UserList from '../containers/user-list';
 import UserDetails from '../containers/user-detail';
-// import UserForm from '../containers/user-form';
+import UserForm from '../containers/user-form';
+
+import BooksList from '../containers/books-list';
+
 import Menu from './menu';
 require('../../scss/style.scss');
 
@@ -15,13 +18,19 @@ const App = () => (
                     <UserList />
                 </Col>
                 <Col xs={12} sm={6}>
-                    {/* <UserForm /> */}
+                    <UserForm />
                 </Col>
             </Row>
             <hr />
             <Row>
                 <Col xs={12}>
                     <UserDetails />
+                </Col>
+            </Row>
+            <hr />
+            <Row>
+                <Col xs={12}>
+                    <BooksList />
                 </Col>
             </Row>
         </div>
