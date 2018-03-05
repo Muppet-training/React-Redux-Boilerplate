@@ -7,7 +7,7 @@ export function userReducers(
     state = {
         users: [
             {
-                id: 1,
+                _id: 1,
                 first: 'Tom',
                 last: 'Curphey',
                 age: 26,
@@ -15,7 +15,7 @@ export function userReducers(
                 thumbnail: 'https://i.imgur.com/C15omPL.png'
             },
             {
-                id: 2,
+                _id: 2,
                 first: 'Egg',
                 last: 'Man',
                 age: 58,
@@ -40,7 +40,7 @@ export function userReducers(
             const currentUserToDelete = [...state.users];
             // DEtermine at which index in the users arrray is the user to delete
             const indexToDelete = currentUserToDelete.findIndex(function(user) {
-                return user.id === action.payload.id;
+                return user._id === action.payload._id;
             });
             // Use slice to remove the user at the specified indexToDelete
             return {
@@ -54,7 +54,7 @@ export function userReducers(
             const currentUserToUpdate = [...state.users];
             // Determine at which index in booksarray is the book to be deleted
             const indexToUpdate = currentUserToUpdate.findIndex(function(user) {
-                return user.id === action.payload.id;
+                return user._id === action.payload._id;
             });
             // Create a new book object with the new values and with the same array index of the item we want to replace. To achieve this we will use ...spread but we could use concat methos too
             const newUserToUpdate = {

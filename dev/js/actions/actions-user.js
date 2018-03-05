@@ -14,10 +14,10 @@ export function postUser(user) {
 }
 
 // Delete user
-export function deleteUser(id) {
+export function deleteUser(user) {
     return {
         type: 'DELETE_USER',
-        payload: id
+        payload: user
     };
 }
 
