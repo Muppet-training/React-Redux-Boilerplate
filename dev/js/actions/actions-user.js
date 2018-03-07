@@ -23,6 +23,7 @@ export function deleteUser(user) {
 
 // Update User
 export function updateUser(user) {
+    // console.log('You are editing user: ', user);
     return {
         type: 'UPDATE_USER',
         payload: user
@@ -30,9 +31,17 @@ export function updateUser(user) {
 }
 
 export const selectUser = user => {
-    console.log('You clicked on user: ', user.first);
+    // console.log('You clicked on user: ', user.first);
     return {
         type: 'USER_SELECTED',
         payload: user
     };
 };
+
+// export const editUser = user => {
+//     console.log('You clicked on user to edit: ', user.first);
+//     return {
+//         type: 'USER_EDIT',
+//         payload: user
+//     };
+// };

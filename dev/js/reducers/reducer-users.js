@@ -51,24 +51,35 @@ export function userReducers(
             };
         case 'UPDATE_USER':
             // Create a copy of the current array of books;
-            const currentUserToUpdate = [...state.users];
+            const currentStateOfUsers = [...state.users];
             // Determine at which index in booksarray is the book to be deleted
-            const indexToUpdate = currentUserToUpdate.findIndex(function(user) {
+
+            // console.log('currentStateOfUsers', currentStateOfUsers);
+
+            const indexToUpdate = currentStateOfUsers.findIndex(function(user) {
+                // typeof user._id => Will tell you the type of varible the value is
+                // console.log('user._id typeof -->', typeof user._id);
                 return user._id === action.payload._id;
             });
             // Create a new book object with the new values and with the same array index of the item we want to replace. To achieve this we will use ...spread but we could use concat methos too
+            // console.log('indexToUpdate', indexToUpdate);
             const newUserToUpdate = {
-                ...currentUserToUpdate[indexToUpdate],
-                first: action.payload.first
+                ...currentStateOfUsers[indexToUpdate],
+                _id: action.payload._id,
+                first: action.payload.first,
+                last: action.payload.last,
+                age: action.payload.age,
+                description: action.payload.description
             };
             // This Log has the purpose to show you how newBookToUpdate looks like
-            console.log('what is it newUserToUpdate', newUserToUpdate);
+            // console.log('what is it newUserToUpdate', newUserToUpdate);
+
             //use slice to remove the book at the specified index, replace with the new object and concatenate witht he rest of items in the array;
             return {
                 users: [
-                    ...currentUserToUpdate.slice(0, indexToUpdate),
+                    ...currentStateOfUsers.slice(0, indexToUpdate),
                     newUserToUpdate,
-                    ...currentUserToUpdate.slice(indexToUpdate + 1)
+                    ...currentStateOfUsers.slice(indexToUpdate + 1)
                 ]
             };
             break;

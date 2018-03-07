@@ -9,6 +9,9 @@ export default function(state = null, action) {
         case 'USER_SELECTED':
             return action.payload;
             break;
+        // case 'USER_EDIT':
+        //     return action.payload;
+        //     break;
     }
     return state;
 }
