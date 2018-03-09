@@ -29,17 +29,8 @@ class UserEditForm extends Component {
     }
     click() {
         this.handleSubmit();
-        this.close();
+        this.props.close_modal();
     }
-
-    close() {
-        console.log('CLose Bitch');
-        this.setState({ showModal: false });
-    }
-
-    // open() {
-    //     this.setState({ showModal: true });
-    // }
 
     handleSubmit() {
         const user = {
@@ -108,9 +99,9 @@ class UserEditForm extends Component {
                     />
                 </FormGroup>
                 <Button
-                    // onClick={this.handleSubmit.bind(this)}
                     onClick={this.click.bind(this)}
                     bsStyle="primary"
+                    id="save_user_button"
                 >
                     Save User
                 </Button>

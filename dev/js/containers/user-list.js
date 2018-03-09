@@ -32,19 +32,22 @@ class UserList extends Component {
         };
         // this.click = this.click.bind(this);
     }
-    open() {
+    open_modal() {
         this.setState({ showModal: true });
     }
 
-    close() {
+    close_modal() {
         this.setState({ showModal: false });
     }
 
     click(user) {
         this.props.selectUser(user);
-        // this.props.editUser(user);
-        this.open();
-        // this.props.onClick();
+        this.open_modal();
+    }
+
+    removeItem() {
+        console.log('clicked');
+        this.child.close();
     }
 
     renderList() {
@@ -105,17 +108,25 @@ class UserList extends Component {
 
                 <Modal
                     show={this.state.showModal}
-                    onHide={this.close.bind(this)}
+                    onHide={this.close_modal.bind(this)}
+                    id="IDModal"
+                    ref={ref => {
+                        this.child = ref;
+                    }}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Edit User</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <UserEditForm />
+                        <UserEditForm
+                            close_modal={this.close_modal.bind(this)}
+                        />
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button onClick={this.close.bind(this)}>Close</Button>
+                        <Button onClick={this.close_modal.bind(this)}>
+                            Close
+                        </Button>
                     </Modal.Footer>
                 </Modal>
             </Row>
