@@ -4,7 +4,7 @@
     "description": "The base template to use to start a react app",
     "main": "index.js",
     "scripts": {
-        "dev": "webpack",
+        "dev": "webpack | node server.js",
         "start": "webpack-dev-server"
     },
     "babel": {

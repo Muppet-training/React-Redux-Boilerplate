@@ -2,20 +2,11 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    // devServer: {
-    //     inline: true,
-    //     contentBase: './src',
-    //     port: 3000
-    // },
     entry: './dev/js/index.js',
-    // output: {
-    //     path: path.resolve(__dirname, 'src'), // This is going to go to the root and create a flder colled public then it will put the bundle.js file in this folder
-    //     filename: 'index_bundle.js'
-    //     // publicPath: '/dist'
-    // },
     output: {
-        path: path.resolve(__dirname, 'src'),
+        path: path.resolve(__dirname, 'src'), // This is going to go to the root and create a folder colled src then it will put the bundle.js file in this folder
         filename: 'js/bundle.min.js'
+        // publicPath: '/'
     },
     watch: true,
     devServer: {
@@ -23,10 +14,12 @@ module.exports = {
         compress: true,
         port: 9000,
         stats: 'minimal',
-        inline: true
+        inline: true,
         // hot: true,
+        // historyApiFallback: true
+        open: true
         // historyApiFallback: true,
-        // open: true
+        // publicPath: '/'
     },
     devtool: 'cheap-module-eval-source-map',
 

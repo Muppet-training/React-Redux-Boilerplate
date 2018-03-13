@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
@@ -14,70 +15,40 @@ import { addToCart } from './actions/actions-cart';
 import { postBooks, deleteBooks, updateBooks } from './actions/actions-books';
 import { postUser, deleteUser, updateUser } from './actions/actions-user';
 
+import Menu from './components/menu';
+import Footer from './components/footer';
+import About from './components/about';
+
+import BooksList from './containers/books-list';
+import BooksForm from './containers/books-form';
+import Cart from './containers/cart';
+
 const logger = createLogger();
 const store = createStore(allReducers, applyMiddleware(thunk, promise, logger));
 
-ReactDOM.render(
+// const Routes = (
+//     <Provider store={store}>
+//         <div>
+//             <App />
+//         </div>
+//     </Provider>
+// );
+
+const Routes = (
     <Provider store={store}>
-        <div>
-            <App />
-        </div>
-    </Provider>,
-    document.getElementById('root')
+        <BrowserRouter>
+            <div>
+                <Menu />
+                <Switch>
+                    <Route exact path="/" component={App} />
+                    <Route path="/admin" component={BooksForm} />
+                    <Route path="/cart" component={Cart} />
+                    <Route path="/about" component={About} />
+                </Switch>
+                <Footer />
+            </div>
+        </BrowserRouter>
+    </Provider>
 );
 
-// store.dispatch(
-//     postBooks([
-//         {
-//             id: 1,
-//             title: 'this is the book title',
-//             description: 'this is the book description',
-//             price: 33.33
-//         },
-//         {
-//             id: 2,
-//             title: 'this is the second book title',
-//             description: 'this is the second book description',
-//             price: 50
-//         }
-//     ])
-// );
-
-// store.dispatch(
-//     postUser([
-//         {
-//             id: 1,
-//             first: 'Tom',
-//             last: 'Curphey',
-//             age: 26,
-//             description: 'Is trying to learn programming',
-//             thumbnail: 'https://i.imgur.com/C15omPL.png'
-//         },
-//         {
-//             id: 2,
-//             first: 'Egg',
-//             last: 'Man',
-//             age: 58,
-//             description: 'I workout!',
-//             thumbnail: 'https://i.imgur.com/cX0rUbJ.png'
-//         }
-//     ])
-// );
-//
-// store.dispatch(deleteUser({ id: 1 }));
-//
-// store.dispatch(
-//     updateUser({
-//         id: 2,
-//         first: 'Thomas'
-//     })
-// );
-// store.dispatch({
-//     type: 'UPDATE_USER',
-//     payload: {
-//         id: 2,
-//         first: 'Thomas'
-//     }
-// });
-
-// store.dispatch(addToCart([{ id: 1 }]));
+ReactDOM.render(Routes, document.getElementById('root'));

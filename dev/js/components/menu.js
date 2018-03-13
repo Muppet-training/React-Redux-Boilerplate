@@ -24,6 +24,10 @@ class Menu extends Component {
                         <NavItem eventKey={1} href="/admin">
                             Admin
                         </NavItem>
+                        <NavItem eventKey={2} href="/cart">
+                            Cart
+                            <Badge className="badge">1</Badge>
+                        </NavItem>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

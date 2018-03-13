@@ -4,11 +4,37 @@ h2 {
     color: $primary;
 }
 
-.navbar-inverse {
-    background-color: orangered;
+#root {
+    padding-top: 51px;
+}
+.admin_container,
+.user_container {
+    max-width: 1300px;
+    margin: auto;
+    margin-top: 20px;
 }
 
-.content {
+.navbar-inverse {
+    background-color: orangered;
+    .navbar-brand {
+        color: #733212;
+    }
+    .navbar-nav > li > a {
+        color: #733212;
+    }
+}
+
+.navbar-inverse .content {
     margin-top: 70px;
     padding: 0px 20px;
+}
+
+.badge {
+    margin-left: 10px;
+    background-color: #00bcd4;
+}
+
+.content .row {
+    margin-left: 0px;
+    margin-right: 0px;
 }

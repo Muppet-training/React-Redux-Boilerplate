@@ -16,7 +16,7 @@ export function postBooks(book) {
 // DELETE BOOKS
 export function deleteBooks(id) {
     return {
-        type: 'DELETE_BOOKS',
+        type: 'DELETE_BOOK',
         payload: id
     };
 }
@@ -24,7 +24,7 @@ export function deleteBooks(id) {
 // UPDATE BOOKS
 export function updateBooks(book) {
     return {
-        type: 'UPDATE_BOOKS',
+        type: 'UPDATE_BOOK',
         payload: book
     };
 }
