@@ -48,7 +48,7 @@ class BooksForm extends Component {
         });
 
         return (
-            <div className="admin_container">
+            <div>
                 <Well>
                     <Panel>
                         <Panel.Body>

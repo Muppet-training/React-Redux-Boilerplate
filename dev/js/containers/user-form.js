@@ -15,8 +15,12 @@ import { postUser } from '../actions/actions-user';
 
 class UserForm extends Component {
     handleSubmit() {
+        let new_id = this.props.users.length + 1;
+        console.log('--->', new_id);
+
         const user = [
             {
+                _id: new_id,
                 first: findDOMNode(this.refs.first).value,
                 last: findDOMNode(this.refs.last).value,
                 age: findDOMNode(this.refs.age).value,
@@ -87,8 +91,14 @@ class UserForm extends Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        users: state.users.users
+    };
+}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ postUser }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(UserForm);
+export default connect(mapStateToProps, mapDispatchToProps)(UserForm);

@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './dev/js/index.js',
+    entry: './dev/js/client.js',
     output: {
         path: path.resolve(__dirname, 'src'), // This is going to go to the root and create a folder colled src then it will put the bundle.js file in this folder
         filename: 'js/bundle.min.js'

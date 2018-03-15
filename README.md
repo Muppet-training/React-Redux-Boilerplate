@@ -23,3 +23,18 @@ Start the development server (changes will now update live in browser)
 ```
 
 To view your project, go to: [http://localhost:9000/](http://localhost:9000/)
+
+```
+> STEPS TO SET UP EXPRESS TO CONNECT MONGOOSE WITH MONGODB
+```
+
+Start the Mongo Database
+./mongod --dbpath /c/mongodb/dbs
+
+CRUD Operations
+https://docs.mongodb.com/manual/crud/
+
+Nodemon checks server for any updates
+Axios allows the Redux action to communicate with the API server. The API server then communicates to the Database via Mongoose
+THUNK is a redux reducer middleware that returns a function instead of an action from the API
+
