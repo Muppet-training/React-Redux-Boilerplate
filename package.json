@@ -4,20 +4,17 @@
     "private": true,
     "scripts": {
         "start": "node ./bin/www",
-        "dev": "webpack && node server.js",
+        "dev": "webpack || node server.js",
         "webpack": "webpack",
         "start-webpack": "webpack-dev-server"
     },
     "babel": {
-        "presets": [
-            "env",
-            "react",
-            "stage-1"
-        ]
+        "presets": ["env", "react", "stage-1"]
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Muppet-training/React-Redux-Boilerplate.git"
+        "url":
+            "git+https://github.com/Muppet-training/React-Redux-Boilerplate.git"
     },
     "license": "ISC",
     "author": "Tom Curphey",

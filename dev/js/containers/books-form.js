@@ -32,7 +32,7 @@ class BooksForm extends Component {
     }
 
     onDelete() {
-        let bookId = Number(findDOMNode(this.refs.delete).value);
+        let bookId = findDOMNode(this.refs.delete).value;
 
         console.log(bookId);
         this.props.deleteBooks(bookId);
@@ -92,6 +92,7 @@ class BooksForm extends Component {
                                     ref="delete"
                                     componentClass="select"
                                     placeholder="select"
+                                    // onChange={this.onDelete.bind(this)}
                                 >
                                     <option value="-1">
                                         select a book id to delete
