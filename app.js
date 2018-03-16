@@ -28,6 +28,90 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/user_book');
 
 var Books = require('./models/books.js');
+var Users = require('./models/users.js');
+
+//==========>>> GET Users <<<--------------
+app.get('/users', function(req, res) {
+    Users.find(function(err, users) {
+        if (err) {
+            throw err;
+        }
+        res.json(users);
+    });
+});
+
+//==========>>> POST Users <<<--------------
+app.post('/users', function(req, res) {
+    var user = req.body;
+
+    Users.create(user, function(err, users) {
+        if (err) {
+            throw err;
+        }
+        res.json(users);
+    });
+});
+
+//==========>>> DELETE Users <<<--------------
+app.delete('/users/:_id', function(req, res) {
+    var query = { _id: req.params._id };
+
+    Users.remove(query, function(err, users) {
+        if (err) {
+            throw err;
+        }
+        res.json(users);
+    });
+});
+
+//==========>>> UPDATE Users <<<--------------
+app.put('/users/:_id', function(req, res) {
+    var user = req.body;
+    var query = { _id: req.params._id };
+    // if the field doesn't exist $set will set a new field
+    var update = {
+        $set: {
+            first: user.first,
+            last: user.last,
+            age: user.age,
+            description: user.description,
+            thumbnail: user.thumbnail
+        }
+    };
+    // When true returns the updated document
+    var options = { new: true };
+    Users.findOneAndUpdate(query, update, options, function(err, users) {
+        if (err) {
+            throw err;
+        }
+        res.json(users);
+    });
+});
+
+//==========>>> UPDATE Books <<<--------------
+app.put('/books/:_id', function(req, res) {
+    var book = req.body;
+    var query = { _id: req.params._id };
+    // If the field doesn't exist $set will set a new field
+    var update = {
+        $set: {
+            title: book.title,
+            description: book.description,
+            image: book.image,
+            price: book.price
+        }
+    };
+
+    // When true returns the newly updated document!!
+    var options = { new: true };
+
+    Books.findOneAndUpdate(query, update, options, function(err, books) {
+        if (err) {
+            throw err;
+        }
+        res.json(books);
+    });
+});
 
 //==========>>> GET BOOKS <<<--------------
 app.get('/books', function(req, res) {
@@ -56,31 +140,6 @@ app.delete('/books/:_id', function(req, res) {
     var query = { _id: req.params._id };
 
     Books.remove(query, function(err, books) {
-        if (err) {
-            throw err;
-        }
-        res.json(books);
-    });
-});
-
-//==========>>> UPDATE BOOKS <<<--------------
-app.put('/books/:_id', function(req, res) {
-    var book = req.body;
-    var query = { _id: req.params._id };
-    // If the field doesn't exist $set will set a new field
-    var update = {
-        $set: {
-            title: book.title,
-            description: book.description,
-            image: book.image,
-            price: book.price
-        }
-    };
-
-    // When true returns the newly updated document!!
-    var options = { new: true };
-
-    Books.findOneAndUpdate(query, update, options, function(err, books) {
         if (err) {
             throw err;
         }

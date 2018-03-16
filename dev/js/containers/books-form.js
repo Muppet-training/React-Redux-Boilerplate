@@ -39,6 +39,10 @@ class BooksForm extends Component {
     }
 
     render() {
+        const booksEditList = this.props.books.map(function(bookToEdit) {
+            return <div />;
+        });
+
         const booksList = this.props.books.map(function(booksArr) {
             return (
                 <option value={booksArr._id} key={booksArr._id}>
@@ -106,6 +110,14 @@ class BooksForm extends Component {
                             >
                                 Delete Book
                             </Button>
+                        </Panel.Body>
+                    </Panel>
+                    <Panel>
+                        <Panel.Body>
+                            <FormGroup controlId="formControlEdit">
+                                <ControlLabel>Edit Books</ControlLabel>
+                                {booksEditList}
+                            </FormGroup>
                         </Panel.Body>
                     </Panel>
                 </Well>

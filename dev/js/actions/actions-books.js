@@ -2,19 +2,6 @@ import axios from 'axios';
 
 // GET BOOKS
 export function getBooks() {
-    // return function(dispatch) {
-    //     axios
-    //         .get('/books')
-    //         .then(function(response) {
-    //             dispatch({ type: 'GET_BOOKS', payload: response.data });
-    //         })
-    //         .catch(function(err) {
-    //             dispatch({
-    //                 type: 'GET_BOOKS_REJECTED',
-    //                 payload: 'There was an error getting books'
-    //             });
-    //         });
-    // };
     return function(dispatch) {
         axios
             .get('/books')
@@ -59,7 +46,7 @@ export function postBooks(book) {
 // DELETE BOOKS
 export function deleteBooks(id) {
     return function(dispatch) {
-        console.log(id);
+        // console.log(id);
         axios
             .delete('/books/' + id)
             .then(function(response) {
@@ -75,6 +62,8 @@ export function deleteBooks(id) {
     //     payload: id
     // };
 }
+
+// TASKKILL /IM node.exe /F &&
 
 // UPDATE BOOKS
 export function updateBooks(book) {

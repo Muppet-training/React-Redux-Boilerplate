@@ -3,32 +3,10 @@
  * You need to return something, so if there are no users then just return an empty array
  * */
 
-export function userReducers(
-    state = {
-        users: [
-            {
-                _id: 1,
-                first: 'Tom',
-                last: 'Curphey',
-                age: 26,
-                description: 'Is trying to learn programming',
-                thumbnail: 'https://i.imgur.com/C15omPL.png'
-            },
-            {
-                _id: 2,
-                first: 'Egg',
-                last: 'Man',
-                age: 58,
-                description: 'I workout!',
-                thumbnail: 'https://i.imgur.com/cX0rUbJ.png'
-            }
-        ]
-    },
-    action
-) {
+export function userReducers(state = { users: [] }, action) {
     switch (action.type) {
-        case 'GET_USER':
-            return { ...state, users: [...state.users] };
+        case 'GET_USERS':
+            return { ...state, users: [...action.payload] };
 
         case 'POST_USER':
             // let users = state.users.concat(action.payload);
@@ -39,8 +17,14 @@ export function userReducers(
             // Create copy of current state array
             const currentUserToDelete = [...state.users];
             // DEtermine at which index in the users arrray is the user to delete
+
+            // console.log('Delete User ---->', user);
+
             const indexToDelete = currentUserToDelete.findIndex(function(user) {
-                return user._id === action.payload._id;
+                console.log('user------------->', user);
+                console.log('action.payload------------->', action.payload);
+                console.log('user._id------------->', action.payload);
+                return user._id === action.payload;
             });
             // Use slice to remove the user at the specified indexToDelete
             return {

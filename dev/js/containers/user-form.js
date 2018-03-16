@@ -15,12 +15,11 @@ import { postUser } from '../actions/actions-user';
 
 class UserForm extends Component {
     handleSubmit() {
-        let new_id = this.props.users.length + 1;
-        console.log('--->', new_id);
+        // let new_id = this.props.users.length + 1;
+        // console.log('--->', new_id);
 
         const user = [
             {
-                _id: new_id,
                 first: findDOMNode(this.refs.first).value,
                 last: findDOMNode(this.refs.last).value,
                 age: findDOMNode(this.refs.age).value,

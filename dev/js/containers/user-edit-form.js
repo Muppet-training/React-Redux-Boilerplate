@@ -34,14 +34,14 @@ class UserEditForm extends Component {
 
     handleSubmit() {
         const user = {
-            _id: Number(findDOMNode(this.refs._id).value),
+            _id: findDOMNode(this.refs._id).value,
             first: findDOMNode(this.refs.first).value,
             last: findDOMNode(this.refs.last).value,
             age: findDOMNode(this.refs.age).value,
             description: findDOMNode(this.refs.description).value
         };
 
-        console.log(user);
+        console.log('User: ', user);
         this.props.updateUser(user);
     }
 

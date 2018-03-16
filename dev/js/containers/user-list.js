@@ -82,7 +82,7 @@ class UserList extends Component {
                                     </Button>
                                     <Button
                                         onClick={() =>
-                                            this.props.deleteUser(user)
+                                            this.props.deleteUser(user._id)
                                         }
                                         bsStyle="danger"
                                         bsSize="small"
