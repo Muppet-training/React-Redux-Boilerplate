@@ -23,10 +23,13 @@ class Menu extends Component {
                         </NavItem>
                     </Nav>
                     <Nav pullRight>
-                        <NavItem eventKey={3} href="/admin">
+                        <NavItem eventKey={3} href="/share">
+                            Share
+                        </NavItem>
+                        <NavItem eventKey={4} href="/admin">
                             Admin
                         </NavItem>
-                        <NavItem eventKey={4}>
+                        <NavItem eventKey={5}>
                             Your Cart
                             {this.props.totalQty > 0 ? ( // if # ofitems in cart is > 0
                                 <Badge className="badge">

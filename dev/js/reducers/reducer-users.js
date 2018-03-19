@@ -46,7 +46,7 @@ export function userReducers(state = { users: [] }, action) {
                 return user._id === action.payload._id;
             });
             // Create a new book object with the new values and with the same array index of the item we want to replace. To achieve this we will use ...spread but we could use concat methos too
-            // console.log('indexToUpdate', indexToUpdate);
+            console.log('indexToUpdate', indexToUpdate);
             const newUserToUpdate = {
                 ...currentStateOfUsers[indexToUpdate],
                 _id: action.payload._id,

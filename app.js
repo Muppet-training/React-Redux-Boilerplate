@@ -29,6 +29,7 @@ mongoose.connect('mongodb://localhost:27017/user_book');
 
 var Books = require('./models/books.js');
 var Users = require('./models/users.js');
+var Shareholders = require('./models/shareholders.js');
 
 //==========>>> GET Users <<<--------------
 app.get('/users', function(req, res) {
@@ -85,6 +86,40 @@ app.put('/users/:_id', function(req, res) {
             throw err;
         }
         res.json(users);
+    });
+});
+
+//==========>>> GET SHAREHOLDERS <<<--------------
+app.get('/shareholders', function(req, res) {
+    Shareholders.find(function(err, shareholders) {
+        if (err) {
+            throw err;
+        }
+        res.json(shareholders);
+    });
+});
+
+//==========>>> POST SHAREHOLDERS <<<--------------
+app.post('/shareholders', function(req, res) {
+    var shareholder = req.body;
+
+    Shareholders.create(shareholder, function(err, shareholders) {
+        if (err) {
+            throw err;
+        }
+        res.json(shareholders);
+    });
+});
+
+//==========>>> DELETE Users <<<--------------
+app.delete('/shareholders/:_id', function(req, res) {
+    var query = { _id: req.params._id };
+
+    Shareholders.remove(query, function(err, shareholders) {
+        if (err) {
+            throw err;
+        }
+        res.json(shareholders);
     });
 });
 

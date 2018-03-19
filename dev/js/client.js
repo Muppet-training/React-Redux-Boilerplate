@@ -18,6 +18,7 @@ import { postUser, deleteUser, updateUser } from './actions/actions-user';
 
 import Footer from './components/footer';
 import About from './components/about';
+import Shareholders from './components/shareholders';
 
 import Menu from './containers/menu';
 import BooksList from './containers/books-list';
@@ -37,6 +38,7 @@ const Routes = (
                     <Route path="/admin" component={AdminForms} />
                     <Route path="/cart" component={Cart} />
                     <Route path="/about" component={About} />
+                    <Route path="/share" component={Shareholders} />
                 </Switch>
                 <Footer />
             </div>

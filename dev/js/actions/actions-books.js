@@ -67,8 +67,20 @@ export function deleteBooks(id) {
 
 // UPDATE BOOKS
 export function updateBooks(book) {
-    return {
-        type: 'UPDATE_BOOK',
-        payload: book
+    console.log('book.title', book.title);
+    return function(dispatch) {
+        axios
+            .put('/books/' + book._id, book)
+            .then(function(response) {
+                dispatch({ type: 'UPDATE_BOOK', payload: book });
+            })
+            .catch(function(err) {
+                dispatch({ type: 'UPDATE_BOOK_REJECTED', payload: err });
+            });
     };
+
+    // return {
+    //     type: 'UPDATE_BOOK',
+    //     payload: book
+    // };
 }
