@@ -3,7 +3,7 @@ import { booksReducers } from './reducer-books';
 import { userReducers } from './reducer-users';
 import { cartReducers } from './reducer-cart';
 import ActiveUserReducer from './reducer-active-user';
-
+// import { reduce as formReducer } from 'redux-form';
 import { shareholdersReducers } from './reducer-shareholders';
 
 /*
@@ -12,6 +12,7 @@ import { shareholdersReducers } from './reducer-shareholders';
  * */
 
 const allReducers = combineReducers({
+    // form: formReducer,
     books: booksReducers,
     users: userReducers,
     cart: cartReducers,

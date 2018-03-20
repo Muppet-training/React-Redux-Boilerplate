@@ -9,18 +9,20 @@
         "nodemon": "nodemon",
         "start-webpack": "webpack-dev-server",
         "server": "\"npm run webpack\" || \"npm run nodemon\" ",
-
         "sstart": "npm-run-all --parallel watch:server watch:build",
         "watch:build": "webpack --watch",
         "watch:server": "nodemon node \"./bin/www\" "
     },
     "babel": {
-        "presets": ["env", "react", "stage-1"]
+        "presets": [
+            "env",
+            "react",
+            "stage-1"
+        ]
     },
     "repository": {
         "type": "git",
-        "url":
-            "git+https://github.com/Muppet-training/React-Redux-Boilerplate.git"
+        "url": "git+https://github.com/Muppet-training/React-Redux-Boilerplate.git"
     },
     "license": "ISC",
     "author": "Tom Curphey",
@@ -53,6 +55,7 @@
         "react-router-bootstrap": "^0.24.4",
         "react-router-dom": "^4.2.2",
         "redux": "^3.7.2",
+        "redux-form": "^7.3.0",
         "redux-logger": "^3.0.6",
         "redux-promise": "^0.5.3",
         "redux-thunk": "^2.2.0",

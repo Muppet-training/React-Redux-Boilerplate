@@ -26,11 +26,13 @@ export function booksReducers(state = { books: [] }, action) {
             const indexToDelete = currentBookToDelete.findIndex(function(book) {
                 console.log('book------------->', book);
                 console.log('action.payload------------->', action.payload);
-                console.log('book._id------------->', action.payload);
-                if (book._id === action.payload) {
-                    return book._id === action.payload;
-                }
+                console.log('book._id------------->', book._id);
+
+                return book._id === action.payload;
             });
+
+            console.log('indexToDelete------------->', indexToDelete);
+
             //use slice to remove the book at the specified index
             return {
                 books: [

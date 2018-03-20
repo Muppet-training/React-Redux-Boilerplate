@@ -14,17 +14,12 @@ import {
     Button,
     ButtonGroup
 } from 'react-bootstrap';
-
+import { Field, reduxForm, SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
-import {
-    getBooks,
-    deleteBooks,
-    updateBooks,
-    postBooks
-} from '../actions/actions-books';
+import { getBooks, deleteBooks, updateBooks } from '../actions/actions-books';
 
 class BooksEditForm extends Component {
     // handleEditSubmit() {
@@ -38,55 +33,13 @@ class BooksEditForm extends Component {
         this.props.getBooks();
     }
 
-    click(user) {
-        this.handleEditSubmit();
+    titleInput({ input, meta: { touched, error }, ...custom }) {
+        const hasError = touched && error !== undefined;
+        return <div>{hasError}</div>;
     }
 
-    handleBookTitleChange = idx => evt => {
-        const newBookTitle = this.props.books.map((book, sidx) => {
-            if (idx !== sidx) return book;
-            return { ...book, title: evt.target.value };
-        });
-        console.log('newBookTitle==>', newBookTitle[idx]);
-        this.props.updateBooks(newBookTitle[idx]);
-    };
-
-    handleBookDescriptionChange = idx => evt => {
-        const newBookDescription = this.props.books.map((book, sidx) => {
-            if (idx !== sidx) return book;
-            return { ...book, description: evt.target.value };
-        });
-        console.log('newBookDescription==>', newBookDescription[idx]);
-        this.props.updateBooks(newBookDescription[idx]);
-    };
-
-    handleBookPriceChange = idx => evt => {
-        const newBookPrice = this.props.books.map((book, sidx) => {
-            if (idx !== sidx) return book;
-            return { ...book, price: evt.target.value };
-        });
-        console.log('newBookPrice==>', newBookPrice[idx]);
-        this.props.updateBooks(newBookPrice[idx]);
-    };
-
-    handleBookAddBook = () => {
-        const book = [
-            {
-                title: '',
-                description: '',
-                price: 0
-            }
-        ];
-        this.props.postBooks(book);
-    };
-
-    checkValue(bookValue) {
-        console.log('Value: ', bookValue);
-        if (bookValue == null) {
-            console.log('Value: ', bookValue);
-            return '';
-        }
-        return bookValue;
+    submit() {
+        //this
     }
 
     render() {
@@ -112,8 +65,7 @@ class BooksEditForm extends Component {
                             placeholder="Enter Title"
                             // ref="title"
                             // id={index}
-                            value={this.checkValue(bookToEdit.title)}
-                            onChange={this.handleBookTitleChange(idx)}
+                            defaultValue={bookToEdit.title}
                         />
                     </FormGroup>
                 </Col>
@@ -123,8 +75,7 @@ class BooksEditForm extends Component {
                         <FormControl
                             type="text"
                             placeholder="Enter Description"
-                            value={bookToEdit.description}
-                            onChange={this.handleBookDescriptionChange(idx)}
+                            defaultValue={bookToEdit.description}
                         />
                     </FormGroup>
                 </Col>
@@ -134,8 +85,7 @@ class BooksEditForm extends Component {
                         <FormControl
                             type="text"
                             placeholder="Enter Price"
-                            value={bookToEdit.price}
-                            onChange={this.handleBookPriceChange(idx)}
+                            defaultValue={bookToEdit.price}
                         />
                     </FormGroup>
                 </Col>
@@ -148,34 +98,38 @@ class BooksEditForm extends Component {
                         <Button bsStyle="default" bsSize="small">
                             Edit
                         </Button>
-                        <Button
-                            onClick={() =>
-                                this.props.deleteBooks(bookToEdit._id)
-                            }
-                            bsStyle="danger"
-                            bsSize="small"
-                        >
+                        <Button bsStyle="danger" bsSize="small">
                             DELETE
                         </Button>
                     </ButtonGroup>
                 </Col>
             </Row>
         ));
+
         const booksList = this.props.books.map(function(booksArr, idx) {
-            // const booksList = this.props.books.map(function(booksArr) {
-            // const booksList = this.props.books.map(booksArr => (
             return (
-                <li key={idx}>
-                    <input
-                        id="titie"
-                        type="text"
-                        placeholder="Enter Title"
-                        value={booksArr.title}
-                    />
-                    {/* {booksArr.title} */}
-                </li>
+                <div>
+                    <Field name="title" component={this.titleInput} />
+
+                    <button type="submit">Submit</button>
+                </div>
+                // <Row key={idx}>
+                //     <label>First Name</label>
+                //     <div>
+                //         <input
+                //             name="firstName"
+                //             component="input"
+                //             type="text"
+                //             placeholder="First Name"
+                //             initialValues={booksArr.title}
+                //         />
+                //     </div>
+                // </Row>
             );
         });
+
+        const { handleSubmit } = this.props;
+
         return (
             <div>
                 <Well>
@@ -184,13 +138,15 @@ class BooksEditForm extends Component {
                     </Panel>
                     <Panel>
                         <Panel.Body>
-                            <ul>{booksList}</ul>
+                            {/* <ul>{booksList}</ul> */}
+                            <form
+                                onSubmit={handleSubmit(this.submit.bind(this))}
+                            >
+                                {booksList}
+                            </form>
                         </Panel.Body>
                     </Panel>
-                    <button
-                        onClick={this.handleBookAddBook}
-                        className="btn btn-primary btn-center"
-                    >
+                    <button className="btn btn-primary btn-center">
                         + Add
                     </button>
                 </Well>
@@ -201,7 +157,8 @@ class BooksEditForm extends Component {
 
 function mapStateToProps(state) {
     return {
-        books: state.books.books
+        books: state.books.books,
+        form: state.form
     };
 }
 
@@ -210,11 +167,15 @@ function mapDispatchToProps(dispatch) {
         {
             getBooks: getBooks,
             deleteBooks: deleteBooks,
-            updateBooks: updateBooks,
-            postBooks: postBooks
+            updateBooks: updateBooks
         },
         dispatch
     );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BooksEditForm);
+BooksEditForm = connect(mapStateToProps, mapDispatchToProps)(BooksEditForm);
+
+export default reduxForm({
+    form: 'BooksEditForm' // a unique name for this form
+})(BooksEditForm);
+// export default connect(mapStateToProps, mapDispatchToProps)(BooksEditForm);
