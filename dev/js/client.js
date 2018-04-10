@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 // import createLogger from 'redux-logger';
@@ -26,7 +27,10 @@ import BooksForm from './containers/books-form';
 import Cart from './containers/cart';
 
 const logger = createLogger();
-const store = createStore(allReducers, applyMiddleware(thunk, promise, logger));
+const store = createStore(
+    allReducers,
+    composeWithDevTools(applyMiddleware(thunk, promise, logger))
+);
 
 const Routes = (
     <Provider store={store}>

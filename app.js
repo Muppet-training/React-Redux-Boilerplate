@@ -30,6 +30,52 @@ mongoose.connect('mongodb://localhost:27017/user_book');
 var Books = require('./models/books.js');
 var Users = require('./models/users.js');
 var Shareholders = require('./models/shareholders.js');
+var Single = require('./models/single.js');
+
+//==========>>> POST testform <<<--------------
+app.post('/register', function(req, res) {
+    var user = req.body;
+    Users.create(user, function(err, users) {
+        if (err) {
+            throw err;
+        }
+        res.json(users);
+    });
+});
+
+//==========>>> GET Single <<<--------------
+app.get('/single', function(req, res) {
+    Single.find(function(err, single) {
+        if (err) {
+            throw err;
+        }
+        res.json(single);
+    });
+});
+
+//==========>>> POST Single <<<--------------
+app.post('/single', function(req, res) {
+    var query = req.body;
+
+    Single.create(query, function(err, single) {
+        if (err) {
+            throw err;
+        }
+        res.json(single);
+    });
+});
+
+//==========>>> DELETE Single <<<--------------
+app.delete('/single/:_id', function(req, res) {
+    var query = { _id: req.params._id };
+
+    Single.remove(query, function(err, single) {
+        if (err) {
+            throw err;
+        }
+        res.json(single);
+    });
+});
 
 //==========>>> GET Users <<<--------------
 app.get('/users', function(req, res) {

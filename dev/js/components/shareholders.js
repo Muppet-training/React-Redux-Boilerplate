@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 
-import IncorporationForm from '../containers/incorporationForm';
+// import IncorporationForm from '../containers/incorporationForm';
+import ContactForm from '../containers/test-form-edit';
+import BooksEditForm from '../containers/books-edit-form-edit';
 
 class Shareholders extends Component {
+    // submit = values => {
+    //     console.log('Value: ', values);
+    // };
+
     render() {
         return (
             <footer className="footer text-center">
@@ -17,7 +23,12 @@ class Shareholders extends Component {
                             </Row>
                             <Row>
                                 <Col xs={12}>
-                                    <IncorporationForm />
+                                    <ContactForm onSubmit={this.submit} />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12}>
+                                    <BooksEditForm />
                                 </Col>
                             </Row>
                         </div>

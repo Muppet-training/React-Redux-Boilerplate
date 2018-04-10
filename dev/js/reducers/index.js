@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
+
 import { booksReducers } from './reducer-books';
 import { userReducers } from './reducer-users';
 import { cartReducers } from './reducer-cart';
 import ActiveUserReducer from './reducer-active-user';
-// import { reduce as formReducer } from 'redux-form';
 import { shareholdersReducers } from './reducer-shareholders';
+import { singleReducers } from './reducer-single';
 
 /*
  * We combine all reducers into a single object before updated data is dispatched (sent) to store
@@ -12,12 +14,13 @@ import { shareholdersReducers } from './reducer-shareholders';
  * */
 
 const allReducers = combineReducers({
-    // form: formReducer,
+    form: formReducer,
     books: booksReducers,
     users: userReducers,
     cart: cartReducers,
     activeUser: ActiveUserReducer,
-    shareholders: shareholdersReducers
+    shareholders: shareholdersReducers,
+    single: singleReducers
 });
 
 export default allReducers;
